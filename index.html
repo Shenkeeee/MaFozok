@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="MaFozok">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="icon" href="icon.svg">
+<title>MaFozok</title>
+<style>
+  :root { color-scheme: light; --bg: #fff; --fg: #1c1c1e; --muted: #8e8e93; --soft: #f2f2f4; --line: #e5e5ea; --accent: #e03131; }
+  * { box-sizing: border-box; }
+  .i { width: 1.1em; height: 1.1em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vertical-align: -0.2em; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.5 -apple-system, system-ui, sans-serif; }
+  header { position: sticky; top: 0; z-index: 1; display: flex; gap: 12px; align-items: center;
+    padding: calc(env(safe-area-inset-top) + 12px) 16px 12px; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .btn { font: inherit; font-weight: 600; border: 0; border-radius: 999px; padding: 10px 18px; text-decoration: none;
+    background: var(--accent); color: #fff; cursor: pointer; display: flex; gap: 6px; align-items: center; }
+  #hello { font-size: 22px; }
+  #lucky { margin-left: auto; padding: 12px; }
+  #back, body.detail #hello, body.detail #lucky { display: none; }
+  body.detail #back { display: flex; }
+  main { max-width: 640px; margin: 0 auto; padding: 16px 16px calc(env(safe-area-inset-bottom) + 32px); }
+
+  .list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .list a { display: block; background: var(--bg); border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+    color: inherit; text-decoration: none; }
+  .list span { display: block; padding: 8px 12px; font-weight: 600; }
+  .list img, .list .noimg { aspect-ratio: 4 / 3; }
+
+  img { display: block; width: 100%; object-fit: cover; }
+  .noimg { display: grid; place-items: center; width: 100%; font-size: 40px; color: var(--muted); background: var(--soft); }
+  .noimg .i { stroke-width: 1.5; }
+  .gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; border-radius: 14px; margin: 0 0 12px; }
+  .gallery > * { flex: 0 0 100%; aspect-ratio: 4 / 3; scroll-snap-align: start; }
+
+  h1 { margin: 0; font-size: 28px; line-height: 1.2; }
+  h2 { font-size: 15px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin: 24px 0 8px; }
+  .meta { color: var(--muted); margin: 6px 0 0; display: flex; gap: 16px; }
+  ul.ing { list-style: none; padding: 0; margin: 0; }
+  ul.ing li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--line); }
+  ul.ing b { font-weight: 500; color: var(--muted); }
+  .chips { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips li { border-radius: 999px; padding: 4px 12px; background: var(--soft); }
+  ol { padding-left: 22px; margin: 0; }
+  ol li { margin-bottom: 14px; }
+  .fn { border: 0; background: none; color: var(--accent); padding: 0 0 0 6px; cursor: pointer; font: inherit; }
+  figure { margin: 0 0 16px; scroll-margin-top: 90px; }
+  figure img { border-radius: 14px; }
+  figcaption { color: var(--muted); font-size: 14px; margin-top: 6px; }
+  ol li::marker { color: var(--accent); font-weight: 600; }
+  .note { margin: 6px 0 0; padding: 6px 10px; font-size: 15px; border-left: 2px solid var(--accent);
+    background: var(--soft); border-radius: 0 8px 8px 0; color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <a id="back" class="btn" href="#"><svg class="i" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>Receptek</a>
+  <h1 id="hello">Szia, mit főzöl ma?</h1>
+  <button id="lucky" class="btn" aria-label="Véletlen recept"><svg class="i" viewBox="0 0 24 24"><path d="m18 14 4 4-4 4"/><path d="m18 2 4 4-4 4"/><path d="M2 18h2a4 4 0 0 0 3.3-1.7l5.4-7.6A4 4 0 0 1 16 7h6"/><path d="M2 6h2a4 4 0 0 1 3.3 1.7l.5.7"/><path d="M22 18h-6a4 4 0 0 1-3.3-1.8l-.4-.5"/></svg></button>
+</header>
+<main id="app"></main>
+<script>
+  const app = document.getElementById('app');
+  let recipes = [];
+  let wakeLock = null;
+
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+  const icon = d => `<svg class="i" viewBox="0 0 24 24">${d}</svg>`;
+  const ICONS = {
+    plate: '<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>',
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    user: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+    camera: '<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/>',
+  };
+  const pics = (r, n) => r.images?.length
+    ? r.images.slice(0, n).map(i => `<img src="${esc(i)}" alt="" loading="lazy">`).join('')
+    : `<div class="noimg">${icon(ICONS.plate)}</div>`;
+
+  function list() {
+    app.innerHTML = `<ul class="list">${recipes.map(r =>
+      `<li><a href="#${esc(r.id)}">${pics(r, 1)}<span>${esc(r.name)}</span></a></li>`).join('')}</ul>`;
+  }
+
+  function show(r) {
+    const meta = [r.time && `<span>${icon(ICONS.clock)} ${esc(r.time)} perc</span>`,
+                  r.portions && `<span>${icon(ICONS.user)} ${esc(r.portions)} adag</span>`].filter(Boolean).join('');
+    // a step is "text" or ["text", "note", ...]
+    const proc = r.process ?? [];
+    const steps = r.steps.map((s, i) => {
+      const [text, ...notes] = [].concat(s);
+      // footnote: camera button that scrolls to the process photo taken after this step
+      const fn = proc.map((p, j) => p.step === i + 1
+        ? `<button class="fn" aria-label="Fotó" onclick="document.getElementById('p${j}').scrollIntoView({behavior:'smooth'})">${icon(ICONS.camera)}</button>` : '').join('');
+      return `<li>${esc(text)}${fn}${notes.map(n => `<p class="note">${esc(n)}</p>`).join('')}</li>`;
+    }).join('');
+    const photos = proc.map((p, j) =>
+      `<figure id="p${j}"><img src="${esc(p.src)}" alt="" loading="lazy"><figcaption>${icon(ICONS.camera)} ${esc(p.step)}. lépés után</figcaption></figure>`).join('');
+    app.innerHTML = `
+      <div class="gallery">${pics(r)}</div>
+      <h1>${esc(r.name)}</h1>
+      ${meta ? `<div class="meta">${meta}</div>` : ''}
+      <h2>Hozzávalók</h2>
+      <ul class="ing">${Object.entries(r.ingredients).map(([k, v]) => `<li>${esc(k)} <b>${esc(v)}</b></li>`).join('')}</ul>
+      ${r.spices?.length ? `<h2>Fűszerek</h2><ul class="chips">${r.spices.map(s => `<li>${esc(s)}</li>`).join('')}</ul>` : ''}
+      <h2>Lépések</h2>
+      <ol>${steps}</ol>
+      ${photos ? `<h2>Folyamat</h2>${photos}` : ''}`;
+  }
+
+  // keep the screen on while a recipe is open; the OS drops the lock when the app is hidden
+  async function lock() {
+    if (wakeLock || !('wakeLock' in navigator)) return;
+    try { wakeLock = await navigator.wakeLock.request('screen'); wakeLock.onrelease = () => wakeLock = null; } catch {}
+  }
+
+  function route() {
+    const r = recipes.find(r => r.id === location.hash.slice(1));
+    document.body.classList.toggle('detail', !!r);
+    if (r) { show(r); lock(); } else { list(); wakeLock?.release(); }
+    scrollTo(0, 0);
+  }
+
+  document.getElementById('lucky').onclick = () => {
+    if (!recipes.length) return;
+    let last = null;
+    try { last = localStorage.getItem('last'); } catch {}
+    const pool = recipes.length > 1 ? recipes.filter(r => r.id !== last) : recipes;
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+    try { localStorage.setItem('last', pick.id); } catch {}
+    location.hash = pick.id;
+  };
+
+  addEventListener('hashchange', route);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && document.body.classList.contains('detail')) lock();
+  });
+
+  fetch('recipes.json', { cache: 'no-cache' })
+    .then(r => r.json())
+    .then(data => { recipes = data; route(); })
+    .catch(() => app.textContent = 'Nem sikerült betölteni a recepteket.');
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+[
+  {
+    "id": "bulgur-csirke",
+    "name": "Tejszínes-curry-s csirkés bulgur",
+    "time": 30,
+    "portions": 4,
+    "images": ["pics/bulgurChicken/main.jpg"],
+    "ingredients": {
+      "csirkemell": "250–300 g",
+      "bulgur": "1 bögre (150–200 g)",
+      "zöldborsó": "fél csomag / kis konzerv",
+      "főzőtejszín": "1 kis doboz (2 dl)",
+      "víz vagy alaplé": "1–1,5 dl",
+      "vöröshagyma": "1 kicsi (ha van)"
+    },
+    "spices": ["só", "bors", "curry", "citromlé"],
+    "steps": [
+      "A csirkét apró kockákra vágod, kimérsz 1 bögre bulgurt (ha kell, átöblíted).",
+      "Nagyobb serpenyőben kevés olajon megdinszteled a hagymát, és ráteszed a csirkét.",
+      "Amikor a hús kifehéredett, mehet bele a zöldborsó és a száraz bulgur, átkevered.",
+      [
+        "Felöntöd a tejszínnel és 1–1,5 dl vízzel vagy alaplével.",
+        "Miért kell a tejszín: a bulgur nagyon szívja a nedvességet, csak vízzel száraz, pergős lenne. A tejszíntől selymes szaft lesz, és napok múlva újramelegítve sem szárad ki a dobozban."
+      ],
+      "Belerakod a fűszereket: só, bors, curry és pár csepp citromlé, átkevered.",
+      [
+        "Lefeded, és alacsony lángon 10–12 percig főzöd, amíg a bulgur beissza a szaftot és megpuhul.",
+        "Ha a serpenyőnek nincs fedője, itt tedd át egy fedős lábasba."
+      ]
+    ],
+    "process": [
+      { "src": "pics/bulgurChicken/fozotejszinRajta.jpg", "step": 4 }
+    ]
+  }
+]
