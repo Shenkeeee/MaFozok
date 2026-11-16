@@ -31,5 +31,218 @@
     "process": [
       { "src": "pics/bulgurChicken/fozotejszinRajta.jpg", "step": 4 }
     ]
+  },
+  {
+    "id": "rizsteszta-csirke",
+    "name": "Szójaszószos csirkés rizstészta",
+    "time": 35,
+    "portions": 4,
+    "images": ["pics/stirFryRizsteszta/main.jpg"],
+    "ingredients": {
+      "csirkemell": "500 g",
+      "széles rizstészta": "250 g (száraz)",
+      "sárgarépa": "4 db",
+      "világos paprika": "2 db",
+      "fokhagyma": "3 gerezd",
+      "zöld hagyma": "3 szál"
+    },
+    "spices": ["szójaszósz"],
+    "steps": [
+      [
+        "A csirkét 2–3 cm-es kockákra vágod, a répát vastag karikákra, a paprikát széles csíkokra, a fokhagymát vékony szeletekre, a zöld hagymát karikákra. A tészta alá vizet forralsz, ráöntöd a tésztára, és kb. 10 percig állni hagyod.",
+        "A mennyiségeket a kép alapján becsültük, mert nem emlékeztem pontosan rájuk. Egyszer főzd meg, és javítsd ki."
+      ],
+      "Nagy serpenyőben vagy wokban olajon megsütöd a csirkét, amíg kifehéredik és kicsit megpirul.",
+      "Hozzáadod a fokhagymát és a répát, és párolod, amíg a répa félig puha lesz.",
+      "Mehet bele a paprika, és még pár percig együtt főzöd.",
+      "Belekevered a tésztát, ráöntöd a szójaszószt, és átforrósítod, hogy mindent bevonjon.",
+      "Tálaláskor a tetejére szórod a zöld hagymát."
+    ],
+    "process": [
+      { "src": "pics/stirFryRizsteszta/cuccokElokeszitve.jpg", "step": 1 }
+    ]
+  },
+  {
+    "id": "virslis-lecso",
+    "name": "Virslis lecsó",
+    "time": 30,
+    "portions": 4,
+    "images": ["pics/lecso/main.jpg"],
+    "ingredients": {
+      "világos paprika": "4 db",
+      "piros kaliforniai paprika": "2 db",
+      "paradicsom": "4 db",
+      "vöröshagyma": "2 db",
+      "virsli": "3–4 szál"
+    },
+    "spices": ["só", "bors", "pirospaprika"],
+    "steps": [
+      [
+        "A hagymát félkarikákra, a paprikákat vastag csíkokra, a paradicsomot szeletekre vagy gerezdekre, a virslit karikákra vágod.",
+        "A mennyiségeket a kép alapján becsültük, mert nem emlékeztem pontosan rájuk. Egyszer főzd meg, és javítsd ki."
+      ],
+      "Serpenyőben olajon üvegesre párolod a hagymát.",
+      "Hozzáadod a paprikákat és a virslit, és pár percig együtt párolod.",
+      "Ráteszed a paradicsomot, és belerakod a fűszereket: só, bors, pirospaprika.",
+      "Lefeded, és kb. 15 percig főzöd, amíg a paprika megpuhul és a paradicsom levet ereszt."
+    ],
+    "process": [
+      { "src": "pics/lecso/fozesKozben.jpg", "step": 5 }
+    ]
+  },
+  {
+    "id": "tonhalas-tesztasalata",
+    "name": "Tonhalas tésztasaláta",
+    "time": 25,
+    "portions": 4,
+    "images": ["pics/tesztaSalataHalas/main.jpg"],
+    "ingredients": {
+      "fusilli": "400 g (száraz)",
+      "konzerv tonhal": "2 db (olajában)",
+      "koktélparadicsom": "250 g",
+      "zöld olíva": "100 g",
+      "camembert": "kb. 150 g",
+      "sózott pörkölt mogyoró": "kb. 80 g (nem kötelező)",
+      "újhagyma": "2 szál"
+    },
+    "spices": ["só", "bors", "bazsalikom", "citromlé"],
+    "steps": [
+      [
+        "A fusillit kifőzöd, leszűröd, és hagyod kihűlni.",
+        "A mennyiségeket a kép alapján becsültük, mert nem emlékeztem pontosan rájuk. Egyszer készítsd el, és javítsd ki."
+      ],
+      "A koktélparadicsomot félbevágod, a camemberten nagyobb darabokra vágod vagy tépkeded, az újhagymát karikákra vágod.",
+      [
+        "A tésztához a tálba teszed a paradicsomot, az olívát, a sajtot, a mogyorót és a tonhalat.",
+        "A tonhal olajából csak egy kicsit önts bele, így nem lesz olajos. A mogyoró nem kötelező, ropogóst ad hozzá."
+      ],
+      "Megszórod sóval, borssal és bazsalikommal, és pár csepp citromlét facsarsz rá.",
+      "Az egészet összekevered, hogy a tonhal és a sajt bevonja a tésztát.",
+      "Tálaláskor a tetejére szórod az újhagymát."
+    ],
+    "process": [
+      { "src": "pics/tesztaSalataHalas/osszekeveresUtan.jpg", "step": 5 },
+      { "src": "pics/tesztaSalataHalas/mogyoros.jpg", "label": "Mogyorós verzió" }
+    ]
+  },
+  {
+    "id": "bolognai-spagetti",
+    "name": "Bolognai spagetti",
+    "time": 40,
+    "portions": 4,
+    "images": ["pics/bolognaiSpagetti/main.jpg"],
+    "ingredients": {
+      "spagetti": "400 g (száraz)",
+      "darált marhahús": "500 g",
+      "csiperkegomba": "250 g",
+      "vöröshagyma": "1 db",
+      "kész paradicsomszósz": "500 g (1 üveg)",
+      "trappista sajt": "kb. 150 g (reszelve)",
+      "ketchup": "ízlés szerint"
+    },
+    "spices": ["só", "bors", "oregánó"],
+    "steps": [
+      [
+        "A hagymát apróra vágod, a gombát felszeleteled, a sajtot lereszeled.",
+        "A mennyiségeket és az időket a kép alapján becsültük, mert nem emlékeztem pontosan rájuk. Egyszer főzd meg, és javítsd ki."
+      ],
+      "Serpenyőben olajon üvegesre párolod a hagymát.",
+      "Hozzáadod a darált húst, és addig pirítod, amíg átsül és szétesik.",
+      "Mehet bele a gomba, és még pár percig együtt sütöd.",
+      "Ráöntöd a paradicsomszószt, megfűszerezed sóval, borssal és oregánóval, és kb. 15–20 percig főzöd, időnként megkeverve.",
+      "Közben kifőzöd a spagettit a csomagolás szerint, és leszűröd.",
+      "Tányérra szeded a spagettit és a szószt, a tetejére szórod a sajtot, a mikróban megolvasztod, és ketchupot csorgatsz rá."
+    ],
+    "process": [
+      { "src": "pics/bolognaiSpagetti/fozeskor.jpg", "step": 5 }
+    ]
+  },
+  {
+    "id": "barackos-sajtos-csirke",
+    "name": "Barackos-sajtos csirke",
+    "time": 45,
+    "portions": 4,
+    "images": ["pics/barackosSajtosCsirke/main.jpg"],
+    "ingredients": {
+      "csirkemell": "700 g (kb. 8 szelet)",
+      "konzerv barack, félbevágva": "1 doboz (8 fél)",
+      "trappista lapsajt": "8 szelet (kb. 200 g)",
+      "rizs": "300 g (száraz)",
+      "kevert saláta": "nem kötelező"
+    },
+    "spices": ["só", "bors"],
+    "steps": [
+      [
+        "A sütőt előmelegíted 200 °C-ra. A csirkemellet vékony szeletekre vágod, a barackot lecsepegteted.",
+        "A mennyiségeket, a hőfokot és az időt a kép alapján becsültük, mert nem emlékeztem pontosan rájuk. Egyszer készítsd el, és javítsd ki."
+      ],
+      "Sütőpapírral bélelt tepsire fekteted a csirkeszeleteket, megsózod és megborsozod.",
+      "Mindegyik szeletre ráraksz egy barackfelet, a vágott felével lefelé.",
+      "Mindegyik szeletet egy lapsajttal egybe befeded, hogy a barackot is lefedje.",
+      "Betolod a sütőbe, és kb. 25–30 percig sütöd, amíg a sajt aranybarna és a csirke átsül.",
+      "Mellé rizst főzöl, és ha van kedved, egy egyszerű salátát is készítesz."
+    ],
+    "process": [
+      { "src": "pics/barackosSajtosCsirke/sutesUtan.jpg", "step": 5 }
+    ]
+  },
+  {
+    "id": "leveles-tesztas-virsli",
+    "name": "Leveles tésztás virsli",
+    "time": 40,
+    "portions": 4,
+    "images": ["pics/virsliLevelesTesztas/main.jpg"],
+    "ingredients": {
+      "virsli": "8 szál",
+      "kész leveles tészta": "1 tekercs",
+      "reszelt sajt": "kb. 100 g",
+      "tojás (kenéshez)": "1 db",
+      "szezámmag": "1–2 ek"
+    },
+    "spices": [],
+    "steps": [
+      [
+        "A sütőt előmelegíted 200 °C-ra. A virslit bevágod, a leveles tésztát kigöngyölöd, és hosszú, keskeny csíkokra vágod. A sajtot lereszeled.",
+        "A mennyiségeket, a hőfokot és az időt a kép alapján becsültük, mert nem emlékeztem pontosan rájuk. Egyszer készítsd el, és javítsd ki."
+      ],
+      "Mindegyik virslire spirálisan rátekersz egy tésztacsíkot, és a sütőpapírral bélelt tepsire fekteted.",
+      "Felvert tojással megkened, és megszórod szezámmaggal.",
+      "Betolod a sütőbe, és kb. 20 percig sütöd, amíg a tészta megpirul. A végén megszórod a sajttal, és még pár percig sütöd, amíg megolvad."
+    ],
+    "process": [
+      { "src": "pics/virsliLevelesTesztas/sutobolKiveve.jpg", "step": 4 }
+    ]
+  },
+  {
+    "id": "zoldsegleves-teszta",
+    "name": "Zöldségleves tésztával",
+    "time": 90,
+    "portions": 4,
+    "images": ["pics/zoldsegleves/main.jpg"],
+    "ingredients": {
+      "víz": "2 l",
+      "csirkecomb": "2 db",
+      "leveszöldség (répa, gyökér, hagyma)": "1 csomag",
+      "zöldségek": "kb. 500 g",
+      "levestészta": "kb. 100 g"
+    },
+    "spices": ["só", "bors"],
+    "steps": [
+      [
+        "Az alaplé elkészítéséhez a csirkecombot és a leveszöldséget feltöltöd 2 l vízzel, megsózod, és kb. 45 percig főzöd.",
+        "Kész alaplét is vehetsz a boltban, azt csak fel kell melegíteni. Akkor ez a lépés kimarad, és az egész kb. 45 perc.",
+        "Az alaplé összetételét, a mennyiségeket és az időket nem tudtam pontosan, ezért ezek becsültek. Egyszer főzd meg, és javítsd ki."
+      ],
+      "Leszűröd az alaplét, a csirkét kiveszed, és ha szeretnéd, felaprítva visszateheted a levesbe.",
+      [
+        "A zöldségeket megtisztítod és felkockázod, beleteszed az alaplébe, és puhára főzöd.",
+        "Előre csomagolt zöldségkeverékkel is tökéletes, és az időnek nagy része így is a főzés."
+      ],
+      "Megborsozod.",
+      [
+        "Beleteszed a tésztát, és a csomagolás szerint megfőzöd benne."
+      ]
+    ],
+    "process": []
   }
 ]

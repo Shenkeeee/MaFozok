@@ -15,18 +15,19 @@
   :root { color-scheme: light; --bg: #fff; --fg: #1c1c1e; --muted: #8e8e93; --soft: #f2f2f4; --line: #e5e5ea; --accent: #e03131; }
   * { box-sizing: border-box; }
   .i { width: 1.1em; height: 1.1em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vertical-align: -0.2em; }
-  body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.5 -apple-system, system-ui, sans-serif; }
+  body { --w: 1400px; margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.5 -apple-system, system-ui, sans-serif; }
+  body.detail { --w: 640px; }
   header { position: sticky; top: 0; z-index: 1; display: flex; gap: 12px; align-items: center;
-    padding: calc(env(safe-area-inset-top) + 12px) 16px 12px; background: var(--bg); border-bottom: 1px solid var(--line); }
+    padding: calc(env(safe-area-inset-top) + 12px) max(16px, calc((100% - var(--w)) / 2 + 16px)) 12px; background: var(--bg); border-bottom: 1px solid var(--line); }
   .btn { font: inherit; font-weight: 600; border: 0; border-radius: 999px; padding: 10px 18px; text-decoration: none;
     background: var(--accent); color: #fff; cursor: pointer; display: flex; gap: 6px; align-items: center; }
   #hello { font-size: 22px; }
   #lucky { margin-left: auto; padding: 12px; }
   #back, body.detail #hello, body.detail #lucky { display: none; }
   body.detail #back { display: flex; }
-  main { max-width: 640px; margin: 0 auto; padding: 16px 16px calc(env(safe-area-inset-bottom) + 32px); }
+  main { max-width: var(--w); margin: 0 auto; padding: 16px 16px calc(env(safe-area-inset-bottom) + 32px); }
 
-  .list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 16px; }
+  .list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 16px; }
   .list a { display: block; background: var(--bg); border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
     color: inherit; text-decoration: none; }
   .list span { display: block; padding: 12px 16px; font-size: 19px; font-weight: 600; }
@@ -90,7 +91,8 @@
     const meta = [r.time && `<span>${icon(ICONS.clock)} ${esc(r.time)} perc</span>`,
                   r.portions && `<span>${icon(ICONS.user)} ${esc(r.portions)} adag</span>`].filter(Boolean).join('');
     // a step is "text" or ["text", "note", ...]
-    const proc = r.process ?? [];
+    // no process photos → repeat the cover photo at the bottom, captioned "after the last step"
+    const proc = r.process?.length ? r.process : r.images?.length ? [{ src: r.images[0], step: r.steps.length }] : [];
     const steps = r.steps.map((s, i) => {
       const [text, ...notes] = [].concat(s);
       // footnote: camera button that scrolls to the process photo taken after this step
@@ -99,7 +101,7 @@
       return `<li>${esc(text)}${fn}${notes.map(n => `<p class="note">${esc(n)}</p>`).join('')}</li>`;
     }).join('');
     const photos = proc.map((p, j) =>
-      `<figure id="p${j}"><img src="${esc(p.src)}" alt="" loading="lazy"><figcaption>${icon(ICONS.camera)} ${esc(p.step)}. lépés után</figcaption></figure>`).join('');
+      `<figure id="p${j}"><img src="${esc(p.src)}" alt="" loading="lazy"><figcaption>${icon(ICONS.camera)} ${esc(p.label ?? `${p.step}. lépés után`)}</figcaption></figure>`).join('');
     app.innerHTML = `
       <div class="gallery">${pics(r)}</div>
       <h1>${esc(r.name)}</h1>
