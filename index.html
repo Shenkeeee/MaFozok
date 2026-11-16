@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ffffff">
 <meta name="apple-mobile-web-app-title" content="MaFozok">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.png">
@@ -137,6 +139,8 @@
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible' && document.body.classList.contains('detail')) lock();
   });
+
+  navigator.serviceWorker?.register('sw.js');
 
   fetch('recipes.json', { cache: 'no-cache' })
     .then(r => r.json())
