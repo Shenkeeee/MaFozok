@@ -5,16 +5,11 @@ self.addEventListener('activate', e => e.waitUntil(self.clients.claim()));
 
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
-  // ponytail: images are cache-first forever, so a changed photo needs a new filename (or bump CACHE)
-  e.respondWith(e.request.destination === 'image' ? cacheFirst(e) : staleWhileRevalidate(e));
+  e.respondWith(staleWhileRevalidate(e));
 });
 
-async function cacheFirst(e) {
-  const cache = await caches.open(CACHE);
-  return (await cache.match(e.request)) || fetchAndStore(cache, e.request);
-}
-
-// serve the cached page/json instantly, refresh it in the background for next launch
+// serve from cache instantly, revalidate in the background (ETag → usually a tiny 304),
+// so a replaced file shows up on the next view
 async function staleWhileRevalidate(e) {
   const cache = await caches.open(CACHE);
   const cached = await cache.match(e.request, { ignoreSearch: true });
@@ -25,7 +20,8 @@ async function staleWhileRevalidate(e) {
 }
 
 async function fetchAndStore(cache, req) {
-  const res = await fetch(req);
+  // no-cache: always ask the server (If-None-Match/If-Modified-Since), never trust the HTTP cache's guess
+  const res = await fetch(req.url, { cache: 'no-cache' });
   if (res.ok) await cache.put(req, res.clone());
   return res;
 }
