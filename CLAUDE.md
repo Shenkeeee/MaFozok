@@ -4,7 +4,8 @@ Saját, statikus receptes webapp iPhone-ra (kezdőképernyőre téve appként fu
 Élesben: https://shenkeeee.github.io/MaFozok/ (GitHub Pages, `main` branch, root). Nincs build, nincs framework.
 
 ## Fájlok
-- `index.html` – minden UI + JS egy fájlban (lista, receptoldal hash routinggal `#<id>`, véletlen gomb, wake lock).
+- `index.html` – minden UI + JS egy fájlban (lista, keresés, receptoldal hash routinggal `#<id>`, véletlen gomb, wake lock).
+  - Keresés a kezdőlapon: név, hozzávalók, fűszerek, lépések és megjegyzések (és az opcionális `tags` mező) között. Kis/nagybetű- és ékezetfüggetlen, fzf-szerű: a beírt betűk sorrendben legyenek benne egy szóban („cske” → csirke). Több szó ÉS kapcsolattal. A név szerinti találat előre kerül. A „Mit főzök ma?” gomb a szűrt találatokból sorsol.
 - `recipes.json` – az adatréteg, ezt szerkesztjük.
 - `pics/<receptMappa>/` – képek, a JSON-ban teljes relatív úttal hivatkozva.
 - `sw.js` – service worker: minden fájl cache-ből azonnal, háttérben revalidál (304). Változás a következő megnyitáskor látszik.

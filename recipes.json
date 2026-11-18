@@ -244,5 +244,36 @@
       ]
     ],
     "process": []
+  },
+  {
+    "id": "gombas-csirkes-bulgur",
+    "name": "Tejszínes-gombás csirkés bulgur",
+    "time": 35,
+    "portions": 4,
+    "images": ["pics/tejszinesCsirkesBulgur/main.jpg"],
+    "ingredients": {
+      "csirkemell": "250 g",
+      "csiperkegomba": "250–300 g",
+      "vöröshagyma": "1 db",
+      "fokhagyma": "1–2 gerezd",
+      "bulgur": "1 bögre (150–200 g)",
+      "víz vagy alaplé": "2 bögre (forró)",
+      "főzőtejszín": "1 doboz (2 dl)"
+    },
+    "spices": ["só", "bors", "petrezselyem"],
+    "steps": [
+      "A csirkét apró kockákra vágod, a gombát felszeleteled, a hagymát és a fokhagymát apróra vágod.",
+      "Serpenyőben kevés olajon vagy vajon megdinszteled a hagymát, ráteszed a gombát és a csirkét, megsózod, megborsozod, hozzáadod a fokhagymát, és addig pirítod, amíg a csirke kifehéredik és a gomba színt kap.",
+      "Beleöntöd a száraz bulgurt, és 1 percig keveded.",
+      [
+        "Felöntöd 2 bögre forró vízzel vagy alaplével, hozzáadod a főzőtejszínt, átkevered, és megkóstolod, elég sós-e.",
+        "Főzőtejszín helyett tejfölt is használhatsz. Előbb keverj a tejfölhöz 1–2 evőkanál forró folyadékot, hogy ne ugorjon össze, és ne forrald túl."
+      ],
+      "Lefeded, és alacsony lángon 10–12 percig főzöd, amíg a bulgur beissza a folyadékot és megpuhul.",
+      "Elzárod a lángot, 5 percig fedő alatt pihenteted, és megszórod petrezselyemmel."
+    ],
+    "process": [
+      { "src": "pics/tejszinesCsirkesBulgur/masodikLepesUtan.jpg", "step": 2 }
+    ]
   }
 ]

@@ -32,6 +32,12 @@
     color: inherit; text-decoration: none; }
   .list span { display: block; padding: 12px 16px; font-size: 19px; font-weight: 600; }
   .list img, .list .noimg { aspect-ratio: 4 / 3; }
+  .search { position: relative; display: block; margin: 0 0 16px; }
+  .search .i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+  .search input { width: 100%; font: inherit; color: var(--fg); background: var(--soft); border: 0; border-radius: 999px;
+    padding: 12px 16px 12px 44px; outline: none; -webkit-appearance: none; appearance: none; }
+  .search input:focus { box-shadow: 0 0 0 2px var(--accent); }
+  .empty { color: var(--muted); }
 
   img { display: block; width: 100%; object-fit: cover; }
   .noimg { display: grid; place-items: center; width: 100%; font-size: 40px; color: var(--muted); background: var(--soft); }
@@ -77,14 +83,47 @@
     clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
     user: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
     camera: '<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/>',
+    search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
+  };
+
+  // search: case/accent-insensitive, fzf-style fuzzy (the typed letters must appear in order inside a word: "cske" finds "csirke")
+  let query = '';
+  const words = s => String(s).toLowerCase().normalize('NFD').replace(/\p{M}/gu, '').split(/[^a-z0-9]+/).filter(Boolean);
+  const subseq = (t, w) => { let i = 0; for (const c of w) if (c === t[i]) i++; return i === t.length; };
+  const textOf = r => [r.name, ...Object.entries(r.ingredients ?? {}).flat(), ...(r.spices ?? []), ...(r.tags ?? []), ...r.steps.flat()].join(' ');
+  // lower is better: the name beats other text, an exact substring beats scattered letters; null = no match
+  const score = (r, ts) => {
+    let total = 0;
+    for (const t of ts) {
+      const hit = (ws, base) => ws.some(w => w.includes(t)) ? base : ws.some(w => subseq(t, w)) ? base + 1 : null;
+      const s = hit(r._n, 0) ?? hit(r._w, 2);
+      if (s === null) return null;
+      total += s;
+    }
+    return total;
+  };
+  const find = q => {
+    const ts = words(q);
+    if (!ts.length) return recipes;
+    return recipes.map(r => [r, score(r, ts)]).filter(([, s]) => s !== null).sort((a, b) => a[1] - b[1]).map(([r]) => r);
   };
   const pics = (r, n) => r.images?.length
     ? r.images.slice(0, n).map(i => `<img src="${esc(i)}" alt="" loading="lazy">`).join('')
     : `<div class="noimg">${icon(ICONS.plate)}</div>`;
 
   function list() {
-    app.innerHTML = `<ul class="list">${recipes.map(r =>
-      `<li><a href="#${esc(r.id)}">${pics(r, 1)}<span>${esc(r.name)}</span></a></li>`).join('')}</ul>`;
+    app.innerHTML = `<label class="search">${icon(ICONS.search)}<input id="q" type="search" placeholder="Keresés" aria-label="Keresés"
+      value="${esc(query)}" autocomplete="off" autocapitalize="off" enterkeyhint="search"></label><div id="results"></div>`;
+    const q = document.getElementById('q');
+    q.oninput = () => { query = q.value; results(); };
+    results();
+  }
+
+  function results() {
+    const found = find(query);
+    document.getElementById('results').innerHTML = found.length
+      ? `<ul class="list">${found.map(r => `<li><a href="#${esc(r.id)}">${pics(r, 1)}<span>${esc(r.name)}</span></a></li>`).join('')}</ul>`
+      : '<p class="empty">Nincs ilyen recept.</p>';
   }
 
   function show(r) {
@@ -128,10 +167,11 @@
   }
 
   document.getElementById('lucky').onclick = () => {
-    if (!recipes.length) return;
+    const found = find(query); // draws only from what the search currently shows
+    if (!found.length) return;
     let last = null;
     try { last = localStorage.getItem('last'); } catch {}
-    const pool = recipes.length > 1 ? recipes.filter(r => r.id !== last) : recipes;
+    const pool = found.length > 1 ? found.filter(r => r.id !== last) : found;
     const pick = pool[Math.floor(Math.random() * pool.length)];
     try { localStorage.setItem('last', pick.id); } catch {}
     location.hash = pick.id;
@@ -146,7 +186,11 @@
 
   fetch('recipes.json', { cache: 'no-cache' })
     .then(r => r.json())
-    .then(data => { recipes = data; route(); })
+    .then(data => {
+      recipes = data;
+      recipes.forEach(r => { r._n = words(r.name); r._w = words(textOf(r)); });
+      route();
+    })
     .catch(() => app.textContent = 'Nem sikerült betölteni a recepteket.');
 </script>
 </body>
