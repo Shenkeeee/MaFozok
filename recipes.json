@@ -4,7 +4,7 @@
     "name": "Tejszínes-curry-s csirkés bulgur",
     "time": 30,
     "portions": 4,
-    "images": ["pics/bulgurChicken/main.jpg"],
+    "images": ["content/bulgurChicken/main.jpg"],
     "ingredients": {
       "csirkemell": "250–300 g",
       "bulgur": "1 bögre (150–200 g)",
@@ -29,7 +29,7 @@
       ]
     ],
     "process": [
-      { "src": "pics/bulgurChicken/fozotejszinRajta.jpg", "step": 4 }
+      { "src": "content/bulgurChicken/fozotejszinRajta.jpg", "step": 4 }
     ]
   },
   {
@@ -37,7 +37,7 @@
     "name": "Szójaszószos csirkés rizstészta",
     "time": 35,
     "portions": 4,
-    "images": ["pics/stirFryRizsteszta/main.jpg"],
+    "images": ["content/stirFryRizsteszta/main.jpg"],
     "ingredients": {
       "csirkemell": "500 g",
       "széles rizstészta": "250 g (száraz)",
@@ -59,7 +59,7 @@
       "Tálaláskor a tetejére szórod a zöld hagymát."
     ],
     "process": [
-      { "src": "pics/stirFryRizsteszta/cuccokElokeszitve.jpg", "step": 1 }
+      { "src": "content/stirFryRizsteszta/cuccokElokeszitve.jpg", "step": 1 }
     ]
   },
   {
@@ -67,7 +67,7 @@
     "name": "Virslis lecsó",
     "time": 30,
     "portions": 4,
-    "images": ["pics/lecso/main.jpg"],
+    "images": ["content/lecso/main.jpg"],
     "ingredients": {
       "világos paprika": "4 db",
       "piros kaliforniai paprika": "2 db",
@@ -87,7 +87,7 @@
       "Lefeded, és kb. 15 percig főzöd, amíg a paprika megpuhul és a paradicsom levet ereszt."
     ],
     "process": [
-      { "src": "pics/lecso/fozesKozben.jpg", "step": 5 }
+      { "src": "content/lecso/fozesKozben.jpg", "step": 5 }
     ]
   },
   {
@@ -95,7 +95,7 @@
     "name": "Tonhalas tésztasaláta",
     "time": 25,
     "portions": 4,
-    "images": ["pics/tesztaSalataHalas/main.jpg"],
+    "images": ["content/tesztaSalataHalas/main.jpg"],
     "ingredients": {
       "fusilli": "400 g (száraz)",
       "konzerv tonhal": "2 db (olajában)",
@@ -121,8 +121,8 @@
       "Tálaláskor a tetejére szórod az újhagymát."
     ],
     "process": [
-      { "src": "pics/tesztaSalataHalas/osszekeveresUtan.jpg", "step": 5 },
-      { "src": "pics/tesztaSalataHalas/mogyoros.jpg", "label": "Mogyorós verzió" }
+      { "src": "content/tesztaSalataHalas/osszekeveresUtan.jpg", "step": 5 },
+      { "src": "content/tesztaSalataHalas/mogyoros.jpg", "label": "Mogyorós verzió" }
     ]
   },
   {
@@ -130,7 +130,7 @@
     "name": "Bolognai spagetti",
     "time": 40,
     "portions": 4,
-    "images": ["pics/bolognaiSpagetti/main.jpg"],
+    "images": ["content/bolognaiSpagetti/main.jpg"],
     "ingredients": {
       "spagetti": "400 g (száraz)",
       "darált marhahús": "500 g",
@@ -154,7 +154,7 @@
       "Tányérra szeded a spagettit és a szószt, a tetejére szórod a sajtot, a mikróban megolvasztod, és ketchupot csorgatsz rá."
     ],
     "process": [
-      { "src": "pics/bolognaiSpagetti/fozeskor.jpg", "step": 5 }
+      { "src": "content/bolognaiSpagetti/fozeskor.jpg", "step": 5 }
     ]
   },
   {
@@ -162,7 +162,7 @@
     "name": "Barackos-sajtos csirke",
     "time": 45,
     "portions": 4,
-    "images": ["pics/barackosSajtosCsirke/main.jpg"],
+    "images": ["content/barackosSajtosCsirke/main.jpg"],
     "ingredients": {
       "csirkemell": "700 g (kb. 8 szelet)",
       "konzerv barack, félbevágva": "1 doboz (8 fél)",
@@ -183,7 +183,7 @@
       "Mellé rizst főzöl, és ha van kedved, egy egyszerű salátát is készítesz."
     ],
     "process": [
-      { "src": "pics/barackosSajtosCsirke/sutesUtan.jpg", "step": 5 }
+      { "src": "content/barackosSajtosCsirke/sutesUtan.jpg", "step": 5 }
     ]
   },
   {
@@ -191,7 +191,7 @@
     "name": "Leveles tésztás virsli",
     "time": 40,
     "portions": 4,
-    "images": ["pics/virsliLevelesTesztas/main.jpg"],
+    "images": ["content/virsliLevelesTesztas/main.jpg"],
     "ingredients": {
       "virsli": "8 szál",
       "kész leveles tészta": "1 tekercs",
@@ -207,7 +207,7 @@
       "Betolod a sütőbe, és kb. 15 percig sütöd. Utána kiveszed, megszórod a sajttal, és még kb. 5 percig sütöd, amíg a sajt megolvad és a tészta megpirul."
     ],
     "process": [
-      { "src": "pics/virsliLevelesTesztas/sutobolKiveve.jpg", "step": 4 }
+      { "src": "content/virsliLevelesTesztas/sutobolKiveve.jpg", "step": 4 }
     ]
   },
   {
@@ -215,7 +215,7 @@
     "name": "Zöldségleves tésztával",
     "time": 90,
     "portions": 4,
-    "images": ["pics/zoldsegleves/main.jpg"],
+    "images": ["content/zoldsegleves/main.jpg"],
     "ingredients": {
       "víz": "2 l",
       "csirkecomb": "2 db",
@@ -247,7 +247,7 @@
     "name": "Tejszínes-gombás csirkés bulgur",
     "time": 35,
     "portions": 4,
-    "images": ["pics/tejszinesCsirkesBulgur/main.jpg"],
+    "images": ["content/tejszinesCsirkesBulgur/main.jpg"],
     "ingredients": {
       "csirkemell": "250 g",
       "csiperkegomba": "250–300 g",
@@ -270,7 +270,7 @@
       "Elzárod a lángot, 5 percig fedő alatt pihenteted, és megszórod petrezselyemmel."
     ],
     "process": [
-      { "src": "pics/tejszinesCsirkesBulgur/masodikLepesUtan.jpg", "step": 2 }
+      { "src": "content/tejszinesCsirkesBulgur/masodikLepesUtan.jpg", "step": 2 }
     ]
   },
   {
@@ -278,7 +278,7 @@
     "name": "Chilis bab (hús nélkül)",
     "time": 40,
     "portions": 4,
-    "images": ["pics/chilisBabHusNelkul/main.jpg"],
+    "images": ["content/chilisBabHusNelkul/main.jpg"],
     "ingredients": {
       "vörös- vagy fekete bab (konzerv)": "2 konzerv",
       "csemegekukorica (konzerv)": "1 kis konzerv",
@@ -304,7 +304,7 @@
       "Tálaláskor tortilla chipsszel és tejföllel kínálod."
     ],
     "process": [
-      { "src": "pics/chilisBabHusNelkul/paradicsomleOntesUtan.jpg", "step": 3 }
+      { "src": "content/chilisBabHusNelkul/paradicsomleOntesUtan.jpg", "step": 3 }
     ]
   }
 ]

@@ -22,9 +22,17 @@
   .btn { font: inherit; font-weight: 600; border: 0; border-radius: 999px; padding: 10px 18px; text-decoration: none;
     background: var(--accent); color: #fff; cursor: pointer; display: flex; gap: 6px; align-items: center; }
   #hello { font-size: 22px; }
-  #lucky { margin-left: auto; padding: 12px; }
-  #back, body.detail #hello, body.detail #lucky { display: none; }
-  body.detail #back { display: flex; }
+  .btn > span { text-box: trim-both cap alphabetic; } /* centres the capital letters on the icon, whatever the font's metrics */
+  #lucky, #share { margin-left: auto; }
+  #lucky { padding: 12px; }
+  #share { gap: 10px; } /* the share icon fills its box, the chevron doesn't, so it needs a wider gap to look evenly spaced */
+  #back, #share { min-height: 46px; } /* the trimmed label no longer sets the height, so keep the original pill size */
+  #back, #share, body.detail #hello, body.detail #lucky { display: none; }
+  body.detail #back, body.detail #share { display: flex; }
+  #toast { position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 24px); transform: translate(-50%, 12px);
+    background: var(--fg); color: #fff; padding: 10px 18px; border-radius: 999px; font-size: 15px;
+    opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
+  #toast.show { opacity: 1; transform: translate(-50%, 0); }
   main { max-width: var(--w); margin: 0 auto; padding: 16px 16px calc(env(safe-area-inset-bottom) + 32px); }
 
   .list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 16px; }
@@ -66,11 +74,13 @@
 </head>
 <body>
 <header>
-  <a id="back" class="btn" href="#"><svg class="i" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>Receptek</a>
+  <a id="back" class="btn" href="#"><svg class="i" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg><span>Receptek</span></a>
   <h1 id="hello">Szia, mit főzöl ma?</h1>
   <button id="lucky" class="btn" aria-label="Véletlen recept"><svg class="i" viewBox="0 0 24 24"><path d="m18 14 4 4-4 4"/><path d="m18 2 4 4-4 4"/><path d="M2 18h2a4 4 0 0 0 3.3-1.7l5.4-7.6A4 4 0 0 1 16 7h6"/><path d="M2 6h2a4 4 0 0 1 3.3 1.7l.5.7"/><path d="M22 18h-6a4 4 0 0 1-3.3-1.8l-.4-.5"/></svg></button>
+  <button id="share" class="btn" title="Link másolása"><svg class="i" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4"/><path d="m15.4 6.5-6.8 4"/></svg><span>Megosztás</span></button>
 </header>
 <main id="app"></main>
+<div id="toast" role="status"></div>
 <script>
   const app = document.getElementById('app');
   let recipes = [];
@@ -175,6 +185,22 @@
     const pick = pool[Math.floor(Math.random() * pool.length)];
     try { localStorage.setItem('last', pick.id); } catch {}
     location.hash = pick.id;
+  };
+
+  function toast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toast.timer);
+    toast.timer = setTimeout(() => t.classList.remove('show'), 1600);
+  }
+
+  // copies the link of the recipe's share page (index.html in its photo folder, made by make-share-pages.mjs) so chat
+  // apps show its photo + name; a recipe without photos shares the plain #link
+  document.getElementById('share').onclick = async () => {
+    const dir = recipes.find(r => r.id === location.hash.slice(1))?.images?.[0]?.replace(/[^/]+$/, '');
+    const url = dir ? new URL(dir, location.href).href : location.href;
+    try { await navigator.clipboard.writeText(url); toast('Link másolva'); } catch { prompt('Másold ki a linket:', url); }
   };
 
   addEventListener('hashchange', route);
