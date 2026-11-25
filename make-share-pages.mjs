@@ -30,7 +30,6 @@ for (const r of JSON.parse(readFileSync('recipes.json', 'utf8'))) {
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="MaFozok">
 <meta property="og:title" content="${esc(r.name)}">
-<meta property="og:url" content="${base}${encodeURI(dir)}/">
 <meta property="og:image" content="${esc(base + encodeURI(img))}">
 <meta name="twitter:card" content="summary_large_image">
 <script>location.replace('${home}')</script>
