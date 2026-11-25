@@ -201,13 +201,10 @@
     },
     "spices": [],
     "steps": [
-      [
-        "A sütőt előmelegíted 200 °C-ra. A virslit bevágod, a leveles tésztát kigöngyölöd, és hosszú, keskeny csíkokra vágod. A sajtot lereszeled.",
-        "A mennyiségeket, a hőfokot és az időt a kép alapján becsültük, mert nem emlékeztem pontosan rájuk. Egyszer készítsd el, és javítsd ki."
-      ],
+      "A sütőt előmelegíted 200 °C-ra. A virslit bevágod, a leveles tésztát kigöngyölöd, és hosszú, keskeny csíkokra vágod. A sajtot lereszeled.",
       "Mindegyik virslire spirálisan rátekersz egy tésztacsíkot, és a sütőpapírral bélelt tepsire fekteted.",
       "Felvert tojással megkened, és megszórod szezámmaggal.",
-      "Betolod a sütőbe, és kb. 20 percig sütöd, amíg a tészta megpirul. A végén megszórod a sajttal, és még pár percig sütöd, amíg megolvad."
+      "Betolod a sütőbe, és kb. 15 percig sütöd. Utána kiveszed, megszórod a sajttal, és még kb. 5 percig sütöd, amíg a sajt megolvad és a tészta megpirul."
     ],
     "process": [
       { "src": "pics/virsliLevelesTesztas/sutobolKiveve.jpg", "step": 4 }
@@ -274,6 +271,40 @@
     ],
     "process": [
       { "src": "pics/tejszinesCsirkesBulgur/masodikLepesUtan.jpg", "step": 2 }
+    ]
+  },
+  {
+    "id": "chilis-bab",
+    "name": "Chilis bab (hús nélkül)",
+    "time": 40,
+    "portions": 4,
+    "images": ["pics/chilisBabHusNelkul/main.jpg"],
+    "ingredients": {
+      "vörös- vagy fekete bab (konzerv)": "2 konzerv",
+      "csemegekukorica (konzerv)": "1 kis konzerv",
+      "darabolt paradicsom (konzerv)": "1 konzerv (400 g)",
+      "vöröshagyma": "1 nagy fej",
+      "fokhagyma": "2–3 gerezd",
+      "kaliforniai paprika": "1 db",
+      "víz vagy zöldségalaplé": "1–1,5 dl",
+      "étcsokoládé vagy barna cukor": "1–2 kocka (nem kötelező)",
+      "tortilla chips (tálaláshoz)": "nem kötelező",
+      "tejföl (tálaláshoz)": "nem kötelező"
+    },
+    "spices": ["só", "bors", "római kömény", "füstölt pirospaprika", "oregánó", "csili", "citromlé"],
+    "steps": [
+      "Olajon üvegesre párolod az apróra vágott hagymát, hozzáadod a kockára vágott paprikát, és még pár percig pirítod.",
+      "Hozzáadod a fokhagymát és a fűszereket (római kömény, füstölt pirospaprika, oregánó, csili), és fél–1 percig kevergeted, hogy a paprika ne égjen meg.",
+      "Felöntöd a darabolt paradicsommal és az alaplével vagy vízzel, megsózod, megborsozod, és kis lángon, félig lefedve 10–12 percig főzöd.",
+      [
+        "Beleteszed az átöblített, lecsepegtetett babot és kukoricát, és még 10–15 percig főzöd, hogy az ízek összeérjenek.",
+        "Ha túl sűrű, pótold a folyadékot. A bab negyedét a fakanál hátával szétnyomhatod, így sűrűbb és krémesebb lesz."
+      ],
+      "Levéve a tűzről belekevered az étcsokoládét (ha használsz), megkóstolod, és beállítod a sót, a csípősséget és a savasságot egy kis citromlével.",
+      "Tálaláskor tortilla chipsszel és tejföllel kínálod."
+    ],
+    "process": [
+      { "src": "pics/chilisBabHusNelkul/paradicsomleOntesUtan.jpg", "step": 3 }
     ]
   }
 ]
